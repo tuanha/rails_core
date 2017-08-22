@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-user = User.new(
+admin = User.new(
   email: 'admin@example.com',
   password: '123456789',
   password_confirmation: '123456789',
@@ -14,13 +14,5 @@ user = User.new(
   confirmed_at: Time.now
 )
 
-user.save
-
-50.times do
-  User.create(
-    email: Faker::Internet.email,
-    password: 'password',
-    avatar: Faker::Avatar.image
-  )
-end
+admin.save
 
