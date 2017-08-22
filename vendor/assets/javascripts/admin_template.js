@@ -1,0 +1,10 @@
+//= require ./admin/app.config
+//= require ./admin/notification/SmartNotification.min
+//= require ./admin/plugin/datatables/jquery.dataTables.min
+//= require ./admin/plugin/datatables/dataTables.colVis.min
+//= require ./admin/plugin/datatables/dataTables.tableTools.min
+//= require ./admin/plugin/datatables/dataTables.bootstrap.min
+//= require ./admin/plugin/datatable-responsive/datatables.responsive.min
+//= require ./admin/smartwidgets/jarvis.widget.min
+//= require ./admin/app.min
+//= require ./admin/fontawesome-iconpicker.min

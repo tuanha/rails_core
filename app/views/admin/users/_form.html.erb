@@ -1,0 +1,83 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+    <h1 class="page-title txt-color-blueDark">
+      <i class="fa fa-cog fa-fw "></i>
+      <%= 'System' %>
+        <span>&gt;
+          <%=  link_to 'List of users', admin_users_path, 'data-turbolinks-track' => false %>
+        </span>
+    </h1>
+  </div>
+</div>
+<div class="row">
+  <article class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable">
+    <!-- Widget ID (each widget will need unique ID)-->
+    <div class="jarviswidget jarviswidget-sortable jarviswidget-color-darken" id="wid-id-4" data-widget-editbutton="false" data-widget-custombutton="false" role="widget" style="">
+      <header role="heading">
+        <span class="widget-icon">
+          <i class="fa fa-edit"></i>
+        </span>
+        <h2><%= user.new_record? ? 'New User' : 'Edit User'%></h2>
+      </header>
+
+      <!-- widget div-->
+      <div role="content">
+        <!-- widget content -->
+        <div class="widget-body">
+          <%= form_for([:admin, user], :html => {class: 'form-horizontal', id: 'smart-form-register'}) do |f| %>
+            <div class="form-group">
+              <label class="col-sm-2"></label>
+              <div class="col-sm-8">
+                <%= image_tag(@user.avatar , width: 80, id: 'privew_user_avatar') %>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="name" class="col-sm-2 control-label"><%= f.label :avatar %></label>
+              <div class="col-sm-8">
+                <%= f.file_field :avatar, class: 'form-control', accept: "image/x-png, image/gif, image/jpeg" %>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="name" class="col-sm-2 control-label"><%= f.label :email %></label>
+              <div class="col-sm-8">
+                <%= f.text_field :email, class: 'form-control', :required => true %>
+              </div>
+            </div>
+            <% unless user.new_record? %>
+              <div class="form-group">
+                <p class="col-sm-8 col-md-offset-2">Leave password blank if dont want to change</p>
+              </div>
+            <% end %>
+
+            <div class="form-group">
+              <label for="information" class="col-sm-2 control-label"><%= f.label :password %></label>
+              <div class="col-sm-8">
+                <%= f.password_field :password, class: 'form-control' %>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="information" class="col-sm-2 control-label"><%= f.label :password_confirmation %></label>
+              <div class="col-sm-8">
+                <%= f.password_field :password_confirmation, class: 'form-control' %>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="name" class="col-sm-2 control-label"><%= f.label :role %></label>
+              <div class="col-sm-8">
+                <%= f.select :role, User.role.options, {}, {class: 'form-control'} %>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-8">
+                <%= f.submit :class => "btn btn-primary"%>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <!-- end widget content -->
+      </div>
+      <!-- end widget div -->
+    </div>
+    <!-- end widget -->
+  </article>
+</div>

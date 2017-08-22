@@ -1,0 +1,34 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+    <h1 class="page-title txt-color-blueDark">
+      <i class="fa fa-cog fa-fw "></i>
+      <%= 'System' %>
+      <span>&gt;
+        <%=  link_to 'List of backend menus', admin_backend_menus_path %>
+          </span>
+    </h1>
+  </div>
+</div>
+<div class="row">
+  <article class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable">
+
+    <div class="jarviswidget jarviswidget-sortable jarviswidget-color-darken" id="wid-id-4" data-widget-editbutton="false" data-widget-custombutton="false" role="widget" style="">
+
+      <header role="heading">
+        <span class="widget-icon">
+            <i class="fa fa-edit"></i>
+        </span>
+        <h2><%= 'Edit Backend Menu'%></h2>
+      </header>
+
+      <div role="content">
+        <div class="widget-body">
+
+          <%= render 'form' %>
+
+        </div>
+      </div>
+
+    </div>
+  </article>
+</div>

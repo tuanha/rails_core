@@ -1,0 +1,19 @@
+<% flash.each do |message_type, message| %>
+  <% if message.kind_of?(Array) %>
+    <% message.each do |msg| %>
+      <div class="alert alert-flash alert-<%= message_type %>">
+        <%= msg %>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="alert alert-flash alert-<%= message_type %>">
+      <%= message %>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  <% end %>
+<% end %>

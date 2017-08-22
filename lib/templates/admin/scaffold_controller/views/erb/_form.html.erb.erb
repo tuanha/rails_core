@@ -1,0 +1,47 @@
+<%%= form_for(<%= "[:#{prefix}, @#{singular_table_name}]" %>, :html => {class: 'form-horizontal', id: 'smart-form-register'}) do |f| %>
+  <% attributes.each do |attribute| -%>
+    <% if attribute.password_digest? -%>
+      <div class="form-group">
+        <label for="information" class="col-sm-2 control-label"><%= f.label :password %></label>
+        <div class="col-sm-8">
+          <%%= f.password_field :password, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="information" class="col-sm-2 control-label"><%= f.label :password_confirmation %></label>
+        <div class="col-sm-8">
+          <%%= f.password_field :password_confirmation, class: 'form-control' %>
+        </div>
+      </div>
+    <% else -%>
+      <div class="form-group">
+        <% if attribute.reference? -%>
+          <%%= f.label :<%= attribute.column_name %>, class: "col-sm-2 control-label" %><br>
+          <div class="col-sm-8">
+            <%%= f.collection_select :<%= attribute.column_name %>, <%= attribute.name.camelize %>.all, :id, :name, {}, {class: 'form-control'} %>
+          </div>
+        <% elsif attribute.type.to_s == 'attachment' %>
+          <%%= f.label :<%= attribute.column_name %>, class: "col-sm-2 control-label" %><br>
+          <div class="col-sm-8">
+            <%%= f.file_field :<%= attribute.column_name %>, class: 'form-control'%>
+          </div>
+        <% elsif attribute.type.to_s == 'text' %>
+          <%%= f.label :<%= attribute.column_name %>, class: "col-sm-2 control-label" %><br>
+          <div class="col-sm-8">
+            <%%= f.text_area :<%= attribute.column_name %>, class: 'form-control ckeditor'%>
+          </div>
+        <% else %>
+          <%%= f.label :<%= attribute.column_name %>, class: "col-sm-2 control-label" %><br>
+          <div class="col-sm-8">
+            <%%= f.<%= attribute.field_type %> :<%= attribute.name %>, class: 'form-control' %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-8">
+      <%%= f.submit :class => "btn btn-primary"%>
+    </div>
+  </div>
+<%% end %>

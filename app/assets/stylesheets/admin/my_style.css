@@ -1,0 +1,27 @@
+#loading {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 9999;
+  background: #333;
+  opacity: 0.5;
+  display: none
+}
+#loading .bg_loading {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+#loading .bg_loading img {
+  margin: auto;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+#nav-left-menu ul ul li:last-child{
+    display: none;
+}

@@ -1,0 +1,14 @@
+<div class="login_form">
+  <div class="container">
+    <div id="logbox">
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: {method: :post, class: "smart-form client-form"}) do |f| %>
+          <h1>Forgot your password?</h1>
+          <%= f.email_field :email, autofocus: true, placeholder: "enter your email", class: "input pass" %>
+          <%= f.submit "Send me reset password instructions", class: "inputButton" %>
+          <div class="text-center">
+            <%= render("devise/shared/links") %>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>

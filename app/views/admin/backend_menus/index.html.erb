@@ -1,0 +1,64 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+    <h1 class="page-title txt-color-blueDark"><i class="fa-fw fa fa-home"></i> System <span>> List of backend menus</span></h1>
+  </div>
+  <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
+    <ul id="sparks" class="">
+      <li class="sparks-info">
+        <%= link_to 'Add new backend menu', new_admin_backend_menu_path, :class => 'btn btn-primary'%>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="row">
+  <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="true">
+      <header>
+        <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+        <h2><%= 'List of backend menus' %></h2>
+      </header>
+      <div>
+        <div class="jarviswidget-editbox"></div>
+
+        <div class="widget-body">
+          <table id="datatable_fixed_column" class="table table-striped table-bordered" width="100%">
+            <thead>
+            <tr>
+              <th class="hasinput"><input type="text" class="form-control" placeholder="Filter name" /></th>
+              <th class="hasinput"><input type="text" class="form-control" placeholder="Filter url" /></th>
+              <th class="hasinput" ></th>
+            </tr>
+            <tr>
+              <th width="10%">Name</th>
+              <th>Url</th>
+              <th width="14%">Actions</th>
+            </tr>
+            </thead>
+            <tbody id="sortable" data-url="/admin/backend_menus/ajax_update_position">
+            <% @backend_menus.each_with_index do |backend_menu| %>
+                <tr class='data' data-id="<%= backend_menu.id %>">
+                  <td><%= backend_menu.name %></td>
+                  <td><%= backend_menu.url %></td>
+                  <td>
+                    <center>
+                      <%= link_to(edit_admin_backend_menu_path(backend_menu), 'escape' => false, 'class' => 'btn btn-sm btn-default') do%>
+                          <i class="fa fa-edit" title="Edit"></i>
+                      <% end %>
+                      <%= link_to(admin_backend_menu_path(backend_menu), 'class' => 'btn btn-sm btn-default deleteLin', method: :delete, data: { confirm: 'Are you sure?' }) do %>
+                          <i class="fa fa-trash-o" title="Delete"></i>
+                      <% end %>
+                    </center>
+                  </td>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </article>
+</div>
+
+
+

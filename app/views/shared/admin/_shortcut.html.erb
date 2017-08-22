@@ -1,0 +1,12 @@
+<div id="shortcut">
+  <ul>
+    <% if current_user.role.admin? %>
+        <li>
+          <a href="<%= url_for(controller: 'admin/backend_menus', action: 'index') %>" class="jarvismetro-tile big-cubes bg-color-blue"> <span class="iconbox"> <i class="fa fa-list-ul fa-4x"></i> <span>Backend Menus</span> </span> </a>
+        </li>
+    <% end %>
+    <li>
+      <a href="profile.html" class="jarvismetro-tile big-cubes bg-color-pinkDark"> <span class="iconbox"> <i class="fa fa-user fa-4x"></i> <span>My Profile </span> </span> </a>
+    </li>
+  </ul>
+</div>

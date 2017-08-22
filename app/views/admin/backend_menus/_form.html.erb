@@ -1,0 +1,51 @@
+<%= form_for([:admin, @backend_menu], :html => {class: 'form-horizontal'}) do |f| %>
+    <div class="form-group">
+      <label for="description" class="col-sm-2 control-label"><%= f.label 'Parent menu' %></label>
+      <div class="col-sm-8">
+        <%= select("backend_menu", "parent_id", BackendMenu.where.not(id: params[:id])
+            .where('parent_id IS NULL OR parent_id = ?', 0)
+            .collect {|p| [ p.name, p.id ] }, {include_blank: 'Select Parent'}, class: 'form-control') %>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="name" class="col-sm-2 control-label"><%= f.label :name %></label>
+      <div class="col-sm-8">
+        <%= f.text_field :name, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="description" class="col-sm-2 control-label"><%= f.label :icon %></label>
+      <div class="col-sm-8">
+        <%= f.text_field :icon, class: 'form-control icon-picker' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="description" class="col-sm-2 control-label"><%= f.label :url %></label>
+      <div class="col-sm-8">
+        <%= f.text_field :url, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="description" class="col-sm-2 control-label"><%= f.label :highlight %></label>
+      <div class="col-sm-8">
+        <% f.text_area :highlight, class: 'form-control' %>
+        <%= f.text_area :highlight, class: 'form-control', :required => true %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-8">
+        <%= link_to 'Back', admin_backend_menus_path, :class => 'btn btn-default'%>
+        <%= f.submit 'Submit', :class => "btn btn-primary"%>
+      </div>
+    </div>
+<% end %>
+
+<script>
+  $(document).ready(function(){
+    $('.icon-picker').iconpicker({
+      placement:'bottomLeft'
+    });
+  })
+</script>
+
+

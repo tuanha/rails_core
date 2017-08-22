@@ -1,0 +1,61 @@
+<aside id="left-panel">
+
+  <!-- User info -->
+  <div class="login-info">
+      <span> <!-- User image size is adjusted inside CSS, it should stay as it -->
+        <a href="#" id="show-shortcut">
+          <%= current_user.avatar.blank? ? '' : image_tag(current_user.avatar, :class => 'online') %>
+          <span>
+            <%= current_user.email %>
+          </span>
+          <i class="fa fa-angle-down"></i>
+        </a>
+
+      </span>
+  </div>
+  <!-- end user info -->
+
+  <!-- NAVIGATION : This navigation is also responsive-->
+  <nav id="nav-left-menu">
+    <ul>
+      <% original_fullpath = request.original_fullpath
+         @left_menus.each do |name, params|
+           class_name = String.new
+           has_sub = params['children'].present? ? true : false
+           url = params['url'].present? ? params['url'] : '#'
+           url = params['children'].present? ? '#' : url
+           if params['highlight'].present?
+             if original_fullpath.include? params['highlight']
+               class_name += ' active '
+             end
+           end
+
+           concat "<li class='#{class_name}'>
+          <a href='#{url}'>
+          <i class='fa fa-lg fa-fw #{params['icon']}'></i>
+          <span class='menu-item-parent'>#{name}</span>
+          </a>".html_safe
+
+           if has_sub
+             concat "<ul>".html_safe
+             params['children'].each do |child_name, child_params|
+               child_class_name = String.new
+               child_url = child_params['url'].present? ? child_params['url'] : '#'
+               if original_fullpath.include? child_params['highlight']
+                 child_class_name = 'active'
+               end
+               concat "<li class='#{child_class_name}'><a href='#{child_url}'>#{child_name}</a><li>".html_safe
+             end
+             concat "</ul>".html_safe
+           end
+           concat "</li>".html_safe
+         end
+      %>
+    </ul>
+  </nav>
+
+  <span class="minifyme" data-action="minifyMenu">
+    <i class="fa fa-arrow-circle-left hit"></i>
+  </span>
+
+</aside>
